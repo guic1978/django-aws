@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Editar Imagens - {{ produto.nome }}</h1>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ formset.management_form }}
+                <table class="table_type_8 full_width t_align_l">
+                    <thead>
+                    <th>Imagem</th><th>Upload</th><th>Principal</th><th>Apagar?</th>
+                    </thead>
+                    <tbody>
+                    {% for form in formset %}
+                        <tr><td>{{ form.instance.imagem }}<br/><img src="{{ MEDIA_URL }}{{ form.instance.imagem }}" /></td>
+                        {% for field in form %}
+                           <td>{{ field }}</td>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <br/>
+                <input class="btn" type="submit" value="Salvar">
+        </form>
+    </div>
+{% endblock %}
