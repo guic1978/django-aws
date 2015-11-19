@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        <h1>Carrinho</h1>
+        {% if existe %}
+        <table class="table_type_8 full_width t_align_l">
+            <thead>
+                <th>Item</th><th>Preço</th><th>Quantidade</th>
+            </thead>
+            {% for item in itens %}
+            <tr>
+                <td><img style="width: 100px" src="{{ item.produto.imagem_principal.imagem.url }}"></td><td>{{ item.produto }}</td><td>{{ item.produto.preco_venda }}</td><td>1</td><td><a href="{% url 'alterar_carrinho' item.produto.id %}">Remover</a> </td>
+            </tr>
+            {% endfor %}
+        <tr>
+            <td></td>
+            <td>Sub Total:</td>
+            <td>{{ carrinho.total }}</td>
+            <td></td>
+        </tr>
+        </table>
+        {% else %}
+            <h2>Não há itens no carrinho</h2>
+        {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load filename %}
+
+{% block content %}
+<div class="container">
+    <h1>Minhas Compras</h1>
+    <table class="table_type_8 full_width t_align_l">
+        <thead>
+        <th>Nome</th><th>Descrição</th><th>Preço</th><th>Download</th>
+        </thead>
+        {% for produto in produtos %}
+        <tr>
+            <td>{{ produto.nome }}</td>
+            <td>{{ produto.descricao }}</td>
+            <td>R${{ produto.preco }}</td>
+            {%  if produto.download %}
+            <td><a href="{% url 'download_produto' produto.id produto.download|filename %}">{{ produto.download|filename }}</a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

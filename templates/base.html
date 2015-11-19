@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt-br">
+    <meta charset="UTF-8">
+    {% block head %}    
+    <title>Encontre Aqui</title>
+    {% endblock %}
+    {% include "head.html" %}
+</head>
+<body>
+    <div class="boxed_layout relative w_xs_auto">
+        {% block header %}
+            {% include "header.html" %}
+        {% endblock %}        
+        {% block content %}
+        {% endblock %}
+        {% block footer %}
+            {% include "footer.html" %}
+        {% endblock %}
+    </div>
+    {% include "scripts.html" %}
+</body>
+</html>
